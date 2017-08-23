@@ -39,7 +39,7 @@ function Prompt() {
     PoshGitPrompt
 }
 
-. "$psscriptRoot\setup_GIT.ps1"
+#. "$psscriptRoot\setup_GIT.ps1"
 #endregion
 
 #clear-host
