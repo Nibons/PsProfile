@@ -10,7 +10,8 @@ $env:TERM = 'cygwin'
 
 # Load posh-git example profile, which will setup a prompt
 #. 'C:\tools\poshgit\*-posh-git-*\profile.example.ps1'
-Import-Module posh-git
+write-verbose "Loading posh-git"
+Import-Module posh-git -verbose:$false
 $env:ShowGit = $true
 function global:prompt {
     $realLASTEXITCODE = $LASTEXITCODE

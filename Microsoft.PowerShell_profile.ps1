@@ -21,10 +21,7 @@ Function switch-ContainerOSArch {
 #region GIT
 if (Test-Path Function:\Prompt) {Rename-Item Function:\Prompt PrePoshGitPrompt -Force}
 # Load posh-git example profile
-. 'C:\tools\poshgit\dahlbyk-posh-git-fba883f\profile.example.ps1'
-
-
-
+. "$psscriptRoot\setup_GIT.ps1"
 
 Rename-Item Function:\Prompt PoshGitPrompt -Force
 function Prompt() {
@@ -39,7 +36,7 @@ function Prompt() {
     PoshGitPrompt
 }
 
-#. "$psscriptRoot\setup_GIT.ps1"
+
 #endregion
 
 #clear-host
