@@ -1,0 +1,59 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Parallel-Runspace</Title>
+                <Description>Provides Basic framework for parallelism via runspace/runspacepool</Description>
+                <Author></Author>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='0'>
+                    <![CDATA[$runspaceCollection = new-object -TypeName Collections.arraylist
+    $sessionstate = [system.management.automation.runspaces.initialsessionstate]::CreateDefault()
+            $runspacepool = [runspacefactory]::CreateRunspacePool(1, $jobThrottle)
+            $runspacepool.Open()
+
+
+    foreach($entry in $inputobject)
+        {
+            $powershell = [Powershell]::Create()
+                $powershell.addscript($scriptblock) | Out-Null
+                $powershell.AddArgument($sendObject) | out-null
+                $powershell.RunspacePool = $runspacepool
+                $runspaceCollection += new-object PSobject -Property @{'runspace' = $powershell.BeginInvoke()
+                                                                    'powershell' = $powershell}
+
+        }#forEach entry in $inputobject
+
+    #collect Runspaces, and wait till completion
+    $runColTotal = $runspaceCollection.Count
+    $finished = 0
+    $colData = @()
+        do{
+            foreach($runspace in $runspaceCollection)
+                {
+                    $completeCount = ($runspacecollection.runspace | where-object -property IsCompleted -eq $true).count
+                    $progressHash = @{'Activity' = "Processing"
+                                        'status' = "{0} out of {1} Complete" -f $completeCount, $runColTotal
+                                        'percentcomplete' = (($completeCount / $runspaceCollection.count) * 100)
+                                        }#end of write-progress Hash
+                    Write-Progress @progressHash 
+                    if($runspace.runspace.iscompleted)
+                        {
+                            $colData += $runspace.powershell.endinvoke($runspace.runspace) #This line receives data!
+                            $runspace.powershell.dispose() | Out-Null
+                            $finished ++
+                        }#end of If-Completed
+                }#end of foreach-Runspace
+        }while(($runspaceCollection.runspace | Where-Object -Property IsCompleted -EQ $false ).count -gt 0)#end of While-RunspaceCollection
+    $runspacepool.Close()]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>
+

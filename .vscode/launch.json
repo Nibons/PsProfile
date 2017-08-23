@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+            "type": "PowerShell",
+            "request": "launch",
+            "name": "VSCode Profile",
+            "script": "${workspaceRoot}/Microsoft.VSCode_profile.ps1",
+            "cwd": "${workspaceRoot}",
+            "createTemporaryIntegratedConsole": true
+        },
+        {
+            "type": "PowerShell",
+            "request": "launch",
+            "name": "ISE Profile",
+            "script": "${workspaceRoot}/Microsoft.PowershellISE_profile.ps1",
+            "cwd": "${workspaceRoot}",
+            "createTemporaryIntegratedConsole": true
+        },
+        {
+            "type": "PowerShell",
+            "request": "launch",
+            "name": "Console Profile",
+            "script": "${workspaceRoot}/Microsoft.Powershell_profile.ps1",
+            "cwd": "${workspaceRoot}",
+            "createTemporaryIntegratedConsole": false
+        }
+    ]
+}
