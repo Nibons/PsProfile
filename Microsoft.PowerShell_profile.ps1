@@ -1,5 +1,5 @@
 Write-Information "Starting PowerShell Profile"
-$env:docker_host = 'tcp://nanocontainers:2375'
+#$env:docker_host = 'tcp://nanocontainers:2375'
 if ($pwd.path -eq "$($env:SystemRoot)\system32") {Set-Location $HOME}
 #$HBEcredential = get-credential -Message "chfs\clay.haertzen Credentials"
 function prompt {"[$(get-date -format 'HH:mm:ss')] [{0}]>" -f $PWD.Path}
@@ -8,7 +8,7 @@ $hbeCredential = Import-Clixml -Path "$home\HBECredential.xml"
 $dockerCredential = import-clixml -path "$home\dockerCredential.xml"
 
 if (Test-Connection -ComputerName $servername_ProdDeploy -Count 1 -Quiet) {
-    if (!(test-path e:\) -and !(get-psdrive | Where-Object name -eq 'E')) {New-PSDrive -Name E -PSProvider FileSystem -Root "\\$servername_ProdDeploy\e$" -Persist -Credential $hbeCredential} 
+    if (!(test-path e:\) -and !(get-psdrive | Where-Object name -eq 'E')) {New-PSDrive -Name E -PSProvider FileSystem -Root "\\$servername_ProdDeploy\e$" -Credential $hbeCredential} 
     if (!(get-psdrive | Where-Object name -eq 'scripts')) {new-psdrive -Name Scripts -PSProvider FileSystem -Root "\\$servername_ProdDeploy\scripts" -Credential $hbeCredential| Out-Null}
     Import-Module Scripts:\Get-Servers.psm1
 }
