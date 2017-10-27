@@ -1,4 +1,4 @@
-﻿# Update path for SSH (Loaded in PowerShell Profile)
+# Update path for SSH (Loaded in PowerShell Profile)
 if($env:path -notmatch "Git\\bin"){ $env:path += ";" + (Get-Item "Env:ProgramFiles").Value + "\Git\bin"}
 if($env:path -notmatch "Git\\usr\\bin"){$env:path += ";" + (Get-Item "Env:ProgramFiles").Value + "\Git\usr\bin"}
 
