@@ -1,4 +1,5 @@
 Write-Information "Starting PowerShell_VSCode Profile"
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
 
 #load the profile from the ISE console
 $ISEProfile = measure-command {. "$PSScriptRoot\Microsoft.PowerShellISE_profile.ps1"}
