@@ -4,7 +4,7 @@ if ($pwd.path -eq "$($env:SystemRoot)\system32") {Set-Location $HOME}
 $HPSCredential = import-clixml $home\HPSCredential.xml
 function prompt {"[$(get-date -format 'HH:mm:ss')] [{0}]>" -f $PWD.Path}
 
-
+. "$psscriptRoot\Docker_Profile.ps1"
 
 
 Function switch-ContainerOSArch {
