@@ -30,6 +30,10 @@ configuration installStuff{
             DestinationPath = "c:\Users\Clay.Haertzen\AppData\Roaming\Code\User\settings.json"
             Contents = $vsCodeConfigInit
         }
+        Package Chef {
+            Name='Chef'
+            Path='https://packages.chef.io/files/current/chefdk/2.4.9/windows/2012r2/chefdk-2.4.9-1-x64.msi'
+        }
     }
 }
 
