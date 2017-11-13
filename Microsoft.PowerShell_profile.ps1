@@ -3,7 +3,7 @@ Write-Information "Starting PowerShell Profile"
 if ($pwd.path -eq "$($env:SystemRoot)\system32") {Set-Location $HOME}
 $HPSCredential = import-clixml $home\HPSCredential.xml
 
-Start-Transcript -path "$(split-path -parent $profile)\Transcripts\PowerShell_$(get-date -format 'yyyy.mm.dd').log" -append
+Start-Transcript -path "$PSScriptroot\Transcripts\PowerShell_$(get-date -format 'yyyy.mm.dd').log" -append
 function prompt {"[$(get-date -format 'HH:mm:ss')] [{0}]>" -f $PWD.Path}
 
 . "$psscriptRoot\Docker_Profile.ps1"

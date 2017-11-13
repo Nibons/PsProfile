@@ -15,7 +15,7 @@ Import-Module posh-git -verbose:$false
 $env:ShowGit = $true
 function global:prompt {
     $realLASTEXITCODE = $LASTEXITCODE
-
+    
     Write-Host($pwd.ProviderPath) -nonewline
     if($env:ShowGit){
         Write-VcsStatus

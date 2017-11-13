@@ -5,8 +5,4 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
 $ISEProfile = measure-command {. "$PSScriptRoot\Microsoft.PowerShellISE_profile.ps1"}
 Write-Verbose "Loading ISE Profile took $($ISEProfile.TotalSeconds) seconds."
 
-$env:root_scripts = "$home\scripts"
-
-
-
 #clear-host
