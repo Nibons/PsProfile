@@ -28,7 +28,7 @@ function Prompt() {
             Remove-Item function:\Write-Host -Force
         }
     }
-    PoshGitPrompt       
+    PoshGitPrompt
 }
 
 
